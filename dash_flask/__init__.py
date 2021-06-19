@@ -7,7 +7,7 @@ from flask_login import LoginManager, login_required
 from . import auth
 from . import User
 
-patch_all()
+#patch_all()
 
 
 def create_app():
