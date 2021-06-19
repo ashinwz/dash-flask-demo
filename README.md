@@ -43,7 +43,7 @@ Get up and running with `make deploy`:
 
 ```shell
 $ git clone https://github.com/hackersandslackers/plotlydash-flask-tutorial.git
-$ cd plotlydash-flask-tutorial
+$ cd dash_code-flask-tutorial
 $ make deploy
 ``` 
 
