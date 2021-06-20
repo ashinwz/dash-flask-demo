@@ -6,6 +6,8 @@ from .dash_code import dashboard
 from flask_login import LoginManager, login_required
 from . import auth
 from . import User
+#from . import routes
+
 
 #patch_all()
 
@@ -37,13 +39,15 @@ def create_app():
         return user
 
     app.register_blueprint(auth.auth)
+    #app.register_blueprint(routes.server_bp)
+
 
     with app.app_context():
-
-         from . import routes
-         from .assets import compile_static_assets
-
-    #     # Compile static assets
-         compile_static_assets(assets)
+    #
+          from . import routes
+          from .assets import compile_static_assets
+    #
+    # #     # Compile static assets
+          compile_static_assets(assets)
 
     return app

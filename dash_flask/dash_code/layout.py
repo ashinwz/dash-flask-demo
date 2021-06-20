@@ -17,6 +17,9 @@ html_layout = """
                     <h1>Plotly Dash Flask Tutorial</h1>
                   </a>
                 <nav>
+                    <a href="/logout">
+                        logout
+                    </a>
                 </nav>
             </div>
             </header>
