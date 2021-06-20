@@ -6,7 +6,7 @@ from .dash_code import dashboard
 from flask_login import LoginManager, login_required
 from . import auth
 from . import User
-#from . import routes
+from . import extension
 
 
 #patch_all()
@@ -23,6 +23,12 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
+    db = extension.db
+    db.init_app(app)
+
+    migrate = extension.migrate
+    migrate.init_app(app, db)
+
     assets = Environment()
     assets.init_app(app)
 
@@ -34,9 +40,8 @@ def create_app():
             app.view_functions[view_func] = login_required(app.view_functions[view_func])
 
     @login_manager.user_loader
-    def load_user(user_id):
-        user = User.User()
-        return user
+    def load_user(id):
+        return User.query.get(int(id))
 
     app.register_blueprint(auth.auth)
     #app.register_blueprint(routes.server_bp)
