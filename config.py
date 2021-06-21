@@ -14,6 +14,8 @@ class Config:
     FLASK_APP = environ.get("FLASK_APP")
     FLASK_ENV = environ.get("FLASK_ENV")
     SECRET_KEY = environ.get("SECRET_KEY")
+    SQLALCHEMY_DATABASE_URI = f"sqlite:///app.db"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Assets
     LESS_BIN = environ.get("LESS_BIN")
@@ -24,3 +26,7 @@ class Config:
     STATIC_FOLDER = "static"
     TEMPLATES_FOLDER = "templates"
     COMPRESSOR_DEBUG = environ.get("COMPRESSOR_DEBUG")
+
+
+if __name__ == "__main__":
+    print(BASE_DIR)

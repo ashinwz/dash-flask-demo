@@ -1,5 +1,4 @@
 """Initialize Flask app."""
-from ddtrace import patch_all
 from flask import Flask
 from flask_assets import Environment
 from .dash_code import dashboard
@@ -7,9 +6,6 @@ from flask_login import LoginManager, login_required
 from . import auth
 from . import User
 from . import extension
-
-
-#patch_all()
 
 
 def create_app():
@@ -41,7 +37,7 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(id):
-        return User.query.get(int(id))
+        return User.User.query.get(int(id))
 
     app.register_blueprint(auth.auth)
     #app.register_blueprint(routes.server_bp)

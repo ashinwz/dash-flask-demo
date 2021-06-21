@@ -25,11 +25,16 @@ def init_dashboard():
     df = create_dataframe()
 
     # Custom HTML layout
-    dash_app.index_string = html_layout
+    #dash_app.index_string = html_layout
 
     # Create Layout
     dash_app.layout = html.Div(
         children=[
+            html.Div(
+                id="banner",
+                className="banner",
+                children=[html.Img(src=dash_app.get_asset_url("plotly_logo.png"))],
+            ),
             dcc.Graph(
                 id="histogram-graph",
                 figure={
@@ -61,9 +66,12 @@ def create_data_table(df):
     table = dash_table.DataTable(
         id="database-table",
         columns=[{"name": i, "id": i} for i in df.columns],
+        style_table={
+            'height': '500px'
+        },
         data=df.to_dict("records"),
         sort_action="native",
         sort_mode="native",
-        page_size=300,
+        page_size=50,
     )
     return table
